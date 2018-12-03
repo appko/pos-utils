@@ -1,0 +1,7 @@
+{% comment %}
+  Required params:
+    message: string
+{% endcomment %}
+{%- if message != blank -%}
+  <p class="error-block">{{ message }}</p>
+{%- endif -%}

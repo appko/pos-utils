@@ -1,0 +1,31 @@
+{%- assign _field = checkbox -%}
+{%- assign _name = name | default: _field.name -%}
+{%- assign _type = type | default: 'text' -%}
+{%- assign _input_class = input_class | default: '' | append: ' form-input' -%}
+{%- assign _input_id = id | default: _field.name | slugify -%}
+{%- assign _input_data_attrs = input_data_attrs | default: nil -%}
+{%- assign _value = value | default: _field.value -%}
+{%- assign _readonly = readonly | default: false -%}
+{%- assign _disabled = disabled | default: false -%}
+{%- assign _required = required | default: _field.validation.rules.presence -%}
+
+<input
+  type="hidden"
+  value="0"
+  name="{{ _name }}"
+  id="{{ _input_id }}_zero"
+/>
+<input
+  type="checkbox"
+  value="1"
+  class="{{ _input_class }}"
+  name="{{ _name }}"
+  id="{{ _input_id }}"
+  {% if placeholder != blank %} placeholder="{{ _placeholder }}"{% endif %}
+  {% if _readonly == true or _readonly == 'true' %} readonly {% endif %}
+  {% if _required == true or _required == 'true' %} required {% endif %}
+  {% if _disabled == true or _disabled == 'true' %} disabled {% endif %}
+  {% if _value %} checked {% endif %}
+  {{ _input_data_attrs }}
+/>
+

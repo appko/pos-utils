@@ -1,0 +1,29 @@
+{% comment %}
+  Required params:
+    forId: string
+    label: string
+
+  Optional params
+    required: boolean
+    labelClass: string
+    hint: string
+
+{% endcomment %}
+
+{%- assign _field = label_tag -%}
+{%- assign _name = name | default: _field.name -%}
+{%- assign _forId = forId | default: _name | slugify -%}
+{%- assign _default_label = _name | split: "[" | last | remove: ']' | replace: "_",  " " | capitalize -%}
+{%- assign _label = label | default: _default_label  -%}
+{%- assign _class = class -%}
+
+<label for="{{ _forId }}" class="control-label{% if _class %} {{ _class }}{% endif %}">
+  {{ _label }}
+  {% if required %}<span class="control-label__required">*</span>{% endif %}
+
+  {%- if hint != blank -%}
+    <span class="help-block">{{ hint | html_safe }}</span>
+  {%- endif -%}
+</label>
+
+{%- assign _forId = null -%}
