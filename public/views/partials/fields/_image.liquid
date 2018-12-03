@@ -1,5 +1,6 @@
 {%- assign _field = field | default: _field -%}
 {%- assign _name = name | default: _field.name -%}
+{%- assign _alt = alt | default: label -%}
 {%- assign _pattern = pattern | default: nil -%}
 {%- assign _type = type | default: 'text' -%}
 {%- assign _min = min | default: null -%}
@@ -13,16 +14,15 @@
 {%- assign _maxlength = maxlength | default: nil -%}
 {%- assign _required = required | default: _field.validation.rules.presence -%}
 
-<div class="preview">
-  <figure>
-    <a class="action--preview" rel="preview-image" href="{{ _value }}">
-      <img src="{{ _value }}" alt="Transformed athena chameleon 1024x669">
-    </a>
-  </figure>
-  <div class="form-images__options">
-    <button type="button" class="action--edit" data-edit="true" data-url="/dashboard/custom_images/10581/edit">Rotate &amp; Crop</button>
+{% if _value != blank %}
+  <div class="preview">
+    <figure>
+      <a class="action--preview" rel="preview-image" href="{{ _value }}">
+        <img src="{{ _value }}" alt="{{ _alt }}">
+      </a>
+    </figure>
   </div>
-</div>
+{% endif %}
 
 <input
   type="file"
