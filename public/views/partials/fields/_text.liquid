@@ -43,7 +43,7 @@
 <input
   type="{{ _type }}"
   value="{{ _value }}"
-  class="form-control {{ _input_class }}"
+  class="{{ _utils_config.default_input_class }} {{ _input_class }}"
   name="{{ _name }}"
   id="{{ _input_id }}"
   {% if placeholder != blank %} placeholder="{{ _placeholder }}"{% endif %}

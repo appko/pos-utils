@@ -1,9 +1,12 @@
+{%- include 'config/utils' -%}
+
 {%- assign _utils = "modules/utils/public/views/partials/" -%}
 {%- assign _utils_tags = _utils | append: "tags/" -%}
 {%- assign _utils_fields = _utils | append: "fields/" -%}
 
 {%- assign input = _utils | append: 'input' -%}
 {%- assign text_field = _utils_fields | append: 'text' -%}
+{%- assign email_field = _utils_fields | append: 'email' -%}
 {%- assign date_field = _utils_fields | append: 'date' -%}
 {%- assign checkbox_field = _utils_fields | append: 'checkbox' -%}
 {%- assign hidden_field = _utils_fields | append: 'hidden' -%}

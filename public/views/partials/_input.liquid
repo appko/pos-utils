@@ -14,13 +14,13 @@
 {%- assign _disabled = disabled | default: false -%}
 {%- assign _maxlength = maxlength | default: nil -%}
 {%- assign _required = required | default: _field.validation.rules.presence -%}
-{%- assign _field_type = _utils_fields | append: type -%} 
+{%- assign _field_type = _utils_fields | append: type -%}
 {%- assign _error = _utils_tags | append: 'error' %}
 {% if _disabled != blank %}
   {%- assign _error_message = blank -%}
 {% endif %}
 
-<div class="input-group mb-3{{ wrapperClass }}{% if _error_message != blank %} error{% endif %}">
+<div class="{{ _utils_config.default_wrapper_class }}{{ wrapperClass }}{% if _error_message != blank %} error{% endif %}">
   {% include label_tag with _field, class: labelClass, forId: _input_id, label: label %}
   {% include _field_type with _field %}
   {% if custom_html != blank %}{{ custom_html | html_safe }}{% endif %}
