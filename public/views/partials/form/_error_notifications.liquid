@@ -1,0 +1,9 @@
+{% if form.errors != blank %}
+  <div class="row">
+    <p class="alert alert-warning col mt-3 mb-3">
+      There are errors inside this form. Please fix them to continue.
+    </p>
+  </div>
+  {{ form.errors }}
+{% endif %}
+

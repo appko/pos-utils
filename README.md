@@ -11,7 +11,7 @@ create configuration file in marketplace_builder/views/partials/config/\_utils.l
 ```code
 {% parse_json _utils_config %}
   {
-    "default_wrapper_class": "input-group mb-3",
+    "default_wrapper_class": "form-group mb-3",
     "default_input_class": "form-control"
   }
 {% endparse_json %}
