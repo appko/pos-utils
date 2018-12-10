@@ -1,14 +1,15 @@
 {% assign flash_types = 'notice|alert|success|warning|error|deleted' | split:'|' %}
 
 {% for flash_type in flash_types %}
-  {% if flash[flash_type] %}
+  {% if context.flash[flash_type] %}
     {% if flash_type == 'alert' %}
-      {% assign klass = 'error' %}
+      {% assign klass = 'alert-danger' %}
+    {% elsif flash_type == 'notice' %}
+      {% assign klass = 'alert-success' %}
     {% else %}
       {% assign klass = flash_type %}
     {% endif %}
     {% assign flash_icon = klass | prepend: 'flash_messages.icon.' | t %}
-
     <div class="alert {{ klass }}" data-flash-message="true">
       <p>
         <i class="{{ flash_icon }}"></i>

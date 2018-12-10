@@ -1,1 +1,9 @@
-<input name="commit" type="submit" value="{{ submit | default: 'Save' }}" class="{{ class }}" data-disable-with: "{{ data-disable-with | default: 'Processing...' }}" />
+<input 
+  name="commit" 
+  type="submit" 
+  value="{{ submit | default: 'Save' }}" 
+  class="{{ class }}" 
+  {% if disable_with != blank %}
+    onclick="this.disabled=true; this.value='{{ disable_with }}'; this.form.submit();" 
+  {% endif %}
+/>
