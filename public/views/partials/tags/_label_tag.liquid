@@ -19,7 +19,7 @@
 
 <label for="{{ _forId }}" class="control-label{% if _class %} {{ _class }}{% endif %}">
   {{ _label }}
-  {% if required %}<span class="control-label__required">*</span>{% endif %}
+  {% if required %}<span class="control-label__required text-danger">*</span>{% endif %}
 
   {%- if hint != blank -%}
     <span class="help-block">{{ hint | html_safe }}</span>

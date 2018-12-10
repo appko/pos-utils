@@ -5,7 +5,7 @@
 {%- assign _pattern = pattern | default: nil -%}
 {%- assign _min = min | default: null -%}
 {%- assign _max = max | default: null -%}
-{%- assign _error_message = _field.validation.errors -%}
+{%- assign _error_message = error | default: _field.validation.errors -%}
 {%- assign _input_class = input_class | default: '' | append: ' form-input' -%}
 {%- assign _input_id = id | default: _field.name | slugify -%}
 {%- assign _input_data_attrs = input_data_attrs | default: nil -%}
@@ -21,7 +21,7 @@
 {% endif %}
 
 <div class="{{ _utils_config.default_wrapper_class }}{{ wrapperClass }}{% if _error_message != blank %} error{% endif %}">
-  {% include label_tag with _field, class: labelClass, forId: _input_id, label: label %}
+  {% include label_tag with _field, class: labelClass, forId: _input_id, label: label, required: _required %}
   {% include _field_type with _field %}
   {% if custom_html != blank %}{{ custom_html | html_safe }}{% endif %}
 

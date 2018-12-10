@@ -14,7 +14,7 @@
 {%- assign _maxlength = maxlength | default: nil -%}
 {%- assign _required = required | default: _field.validation.rules.presence -%}
 {%- assign _autocomplete = autocomplete | default: nil -%}
-
+{%- assign _value_client = _value | date: '%m/%d/%Y' -%}
 
 <input
   data-date="client"
@@ -29,7 +29,6 @@
   {% if _disabled == true or _disabled == 'true' %} disabled {% endif %}
   {{ _input_data_attrs }}
 />
-
 <input
   data-date="server"
   type="hidden"
