@@ -18,5 +18,8 @@
 {%- assign pagination = _utils | append: 'helpers/pagination' -%}
 
 {%- assign f = form_builder.fields -%}
-
+{
+  "pagination": "{{ pagination }}",
+  "flash_messages": "{{ flash_messages }}"
+}
 
