@@ -1,0 +1,59 @@
+{% comment %}
+  Required params:
+    field: hash
+    label: string
+
+  Optional:
+    hint: string
+    type: string
+    min: integer
+    max: integer
+    autocomplete: string
+    required: boolean
+    container_attrs: string
+    input_class: string
+    input_data_attrs: hash of attributes
+    custom_html: string
+    value: string
+    fieldClass: string
+    wrapperClass: string
+    readonly: boolean
+    disabled: boolean
+    forceValue: boolean
+    pattern: string
+    maxlength: number
+    labelClass: string
+    placeholder: string
+{% endcomment %}
+{%- assign _field = field | default: _field -%}
+{%- assign _name = name | default: _field.name -%}
+{%- assign _pattern = pattern | default: nil -%}
+{%- assign _type = type | default: 'text' -%}
+{%- assign _min = min | default: null -%}
+{%- assign _max = max | default: null -%}
+{%- assign _input_class = input_class | default: '' | append: ' form-input' -%}
+{%- assign _input_id = id | default: _field.name | slugify -%}
+{%- assign _input_data_attrs = input_data_attrs | default: nil -%}
+{%- assign _value = value | default: _field.value -%}
+{%- assign _readonly = readonly | default: false -%}
+{%- assign _disabled = disabled | default: false -%}
+{%- assign _maxlength = maxlength | default: nil -%}
+{%- assign _required = required | default: _field.validation.rules.presence -%}
+
+<select class="selectpicker" multiple data-live-search="true" 
+  type="{{ _type }}"
+  value="{{ _value }}"
+  class="{{ _utils_config.default_input_class }} {{ _input_class }}"
+  name="{{ _name }}[]"
+  id="{{ _input_id }}"
+  {% if placeholder != blank %} placeholder="{{ _placeholder }}"{% endif %}
+  {% if _readonly == true or _readonly == 'true' %} readonly {% endif %}
+  {% if _required == true or _required == 'true' %} required {% endif %}
+  {% if _disabled == true or _disabled == 'true' %} disabled {% endif %}
+  {{ _input_data_attrs }}>
+
+  {% for option in collection %}
+    {%- assign option_value = option.value | default: option %}
+    <option value="{{ option_value }}" {% if _value contains option_value %} selected{% endif %}>{{ option.text | default: option }}</option>
+  {% endfor %}
+</select>
