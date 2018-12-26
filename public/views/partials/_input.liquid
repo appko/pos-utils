@@ -1,3 +1,7 @@
+{%- assign _utils = "modules/utils/" -%}
+{%- assign _utils_tags = _utils | append: "tags/" -%}
+{%- assign _utils_fields = _utils | append: "fields/" -%}
+
 {%- assign _field = input -%}
 {%- assign _type = type | default: 'text' -%}
 {%- assign _name = name | default: _field.name -%}
@@ -20,11 +24,10 @@
   {%- assign _error_message = blank -%}
 {% endif %}
 
-<div class="{{ _utils_config.default_wrapper_class }}{{ wrapperClass }}{% if _error_message != blank %} error{% endif %}">
-  {% include label_tag with _field, class: labelClass, forId: _input_id, label: label, required: _required %}
+<div class="{{ context.exports.utils.config.default_wrapper_class }} {{ wrapperClass }}{% if _error_message != blank %} error{% endif %}">
+  {% include "modules/utils/tags/label_tag" with _field, class: labelClass, forId: _input_id, label: label, required: _required %}
   {% include _field_type with _field %}
   {% if custom_html != blank %}{{ custom_html | html_safe }}{% endif %}
-
-  {% include _error with message: _error_message %}
+  {% include "modules/utils/tags/error" with message: _error_message %}
 </div>
 

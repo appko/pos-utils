@@ -2,18 +2,54 @@
 
 Utility module for PlatfromOS
 
-# installation
+# Installation
 
-place all the files in the modules/ directory
+Place all the files in the modules/ directory
 
-create configuration file in marketplace_builder/views/partials/config/\_utils.liquid
+# Usage
 
-```code
-{% parse_json _utils_config %}
-  {
-    "default_wrapper_class": "form-group mb-3",
-    "default_input_class": "form-control"
-  }
+There are two ways of using prefefined components of utils library:
+
+## Direct
+
+At anytime you can use direct partial path to include predefined component:
+
+``` 
+  {% include "modules/utils/utils/inputs/submit_tag" with "Log Out", class: "btn btn-info ml-auto mr-5" %}
+```
+
+## With predefined variable
+
+1. Include `modules/utils/inti` partial and parsie it with `parse_json` tag: 
+
+```
+{% parse_json "utils" %}
+  {%- include 'modules/utils/init' -%}
+{% endparse_json %}
+```
+
+2. Use predefined components paths with `utils` variable:
+
+```
+  {% include utils.flash_messages %}
+  {% include utils.input with form_builder.fields.email, type: "text" %}
+```
+
+
+# Configuration
+
+Utils module provide some global configuration options, you can instpect all of possible configuration option by simply displaying global object:
+
+```
+{{ context.exports.utils.config }}
+
+```
+
+It is possible to manipulate those configuration options by simply defining them while including init file:
+
+```  
+{% parse_json "utils" %}
+  {%- include 'modules/utils/init', default_wrapper_class: "some-new-class" -%}
 {% endparse_json %}
 ```
 
