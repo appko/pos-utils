@@ -1,7 +1,7 @@
 {% parse_json "config" %}
   {
-    "default_wrapper_class": "{{ wrapper_class | default: 'form-group' }}",
-    "default_input_class": "{{ input_class | default: 'form-control' }}"
+    "default_wrapper_class": "{{ default_wrapper_class | default: 'form-group' }}",
+    "default_input_class": "{{ default_input_class | default: 'form-control' }}"
   }
 {% endparse_json %}
 {% export config, namespace: "utils" %}

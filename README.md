@@ -36,6 +36,7 @@ At anytime you can use direct partial path to include predefined component:
 ```
 
 
+
 # Configuration
 
 Utils module provide some global configuration options, you can instpect all of possible configuration option by simply displaying global object:
