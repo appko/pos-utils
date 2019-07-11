@@ -2,7 +2,7 @@
   name="commit"
   type="submit"
   value="{{ submit | default: 'Save' }}"
-  class="{{ class }}"
+  class="{{ input_class }}"
   {% if disable_with != blank %}
     onclick="this.disabled=true; this.value='{{ disable_with }}'; this.form.submit();"
   {% endif %}

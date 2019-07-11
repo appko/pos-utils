@@ -6,7 +6,7 @@
 {%- assign _min = min | default: null -%}
 {%- assign _max = max | default: null -%}
 {%- assign _input_class = input_class | default: '' | append: ' form-input' -%}
-{%- assign _input_id = id | default: _field.name | slugify -%}
+{%- assign _input_id = input_id | default: _field.name | slugify -%}
 {%- assign _input_data_attrs = input_data_attrs | default: nil -%}
 {%- assign _value = value | default: _field.value -%}
 {%- assign _readonly = readonly | default: false -%}

@@ -13,8 +13,16 @@
 {%- assign _field = label_tag -%}
 {%- assign _name = name | default: _field.name -%}
 {%- assign _forId = forId | default: _name | slugify -%}
+{%- assign _translation_base = _name | replace: "modules/", "|modules/" | split: '|' | last %}
+{%- assign _translated_label = _translation_base |  remove: ']' | split: "[" | join: "." | t -%}
+
+{% if _translated_label contains 'translation missing' %}
+  {%- assign _translated_label = null -%}
+{% endif %}
+
 {%- assign _default_label = _name | split: "[" | last | remove: ']' | replace: "_",  " " | capitalize -%}
-{%- assign _label = label | default: _default_label  -%}
+
+{%- assign _label = label | default: _translated_label | default: _default_label  -%}
 {%- assign _class = class -%}
 
 <label for="{{ _forId }}" class="control-label{% if _class %} {{ _class }}{% endif %}">
